@@ -1,0 +1,2 @@
+# ElasticEmail.WebApiClient-zapier
+The most cost-effective and reliable email delivery platform. We offer an SMTP Relay, robust HTTP API, and a User Interface that has a complete suite of tools and features for managing contacts, templates, campaigns, and reports. We specialize in delivering transactional and marketing email.

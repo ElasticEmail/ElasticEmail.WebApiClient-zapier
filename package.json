@@ -1,0 +1,27 @@
+{
+  "name": "elasticemail-zapier",
+  "version": "1.0.4",
+  "description": "An ElasticEmail app for the Zapier platform.",
+  "repository": "ElasticEmail/ElasticEmail.WebApiClient-zapier",
+  "homepage": "https://elasticemail.com/",
+  "author": "Paweł Podolak <pawel.podolak@elasticemail.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha --recursive"
+  },
+  "engines": {
+    "node": "6.10.3",
+    "npm": ">=3.10.10"
+  },
+  "dependencies": {
+    "elasticemail-webapiclient": "^2.0.4",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "zapier-platform-core": "7.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "should": "^13.2.0"
+  }
+}
