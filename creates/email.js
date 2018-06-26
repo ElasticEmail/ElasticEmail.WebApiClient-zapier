@@ -67,7 +67,7 @@ module.exports = {
             key: 'from',
             label: 'From',
             required: true,
-            helpText: 'From email address. Please note this email should be verfied in Elastic Email system. You can verify it on (settings)[https://elasticemail.com/account/#/settings/domains] page.'
+            helpText: 'From email address. Please note this email should be verfied in Elastic Email system. You can verify it on [settings](https://elasticemail.com/account/#/settings/domains]) page.'
         },
         {
             key: 'fromName',
