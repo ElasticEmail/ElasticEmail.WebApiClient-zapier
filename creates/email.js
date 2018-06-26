@@ -16,13 +16,14 @@ const sendEmail = (z, bundle) => {
     let params = {
         'subject': bundle.inputData.subject,
         'from': bundle.inputData.from,
-        'fromName': bundle.inputData.fromName || null,
-        'replyTo': bundle.inputData.replyTo || null,
-        'replyToName': bundle.inputData.replyToName || null,
-        'msgCC': bundle.inputData.msgCC || null,
-        'msgBcc': bundle.inputData.msgBcc || null,
         'isTransactional': false
     };
+
+    if (bundle.inputData.fromName) params.fromName = bundle.inputData.fromName;
+    if (bundle.inputData.replyTo) params.replyTo = bundle.inputData.replyTo;
+    if (bundle.inputData.replyToName) params.replyToName = bundle.inputData.replyToName;
+    if (bundle.inputData.msgCC) params.msgCC =  bundle.inputData.msgCC;
+    if (bundle.inputData.msgBcc) params.msgBcc = bundle.inputData.msgBcc; 
 
     if (bundle.inputData.msgCC || bundle.inputData.msgBcc) {
         params.msgTo = bundle.inputData.to;
