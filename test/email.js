@@ -29,7 +29,7 @@ describe("email action", () => {
     it("should send an email", (done) => {
         const bundle = {
             authData: {
-                api_key:process.env.API_KEY
+                secretKey: process.env.API_KEY
             },
             inputData: {
               subject: testData.subject,

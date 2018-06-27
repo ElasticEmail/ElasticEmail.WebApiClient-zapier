@@ -1,9 +1,9 @@
 'use strict';
+const request = require("request");
 
 const testAuth = (z , bundle) => {
-
   return z.request({
-      url:  'https://api.elasticemail.com/v2/account/verify?apikey={{bundle.authData.api_key}}',
+      url:  'https://api.elasticemail.com/v2/account/verify?apikey={{bundle.authData.secretKey}}',
     }).then((response) => {
       if (!response.json.success) {
         throw new Error(response.json.error);
@@ -12,26 +12,54 @@ const testAuth = (z , bundle) => {
     });
 };
 
+const getSessionKey = (z, bundle) => {
+  return z.request({
+    method: 'POST',
+    url:  'https://api.elasticemail.com/v2/account/login',
+    form: {
+      username: bundle.authData.email,
+      password: bundle.authData.password
+    }
+  })
+  .then((resp) => {
+    if (!resp.json.success) { throw new Error(resp.json.error); }
+
+    return {
+      sessionKey: resp.json.data,
+      secretKey: resp.json.data
+    };
+  });
+};
+
 const authentication = {
-  type: 'custom',
+  type: "session",
   test: testAuth,
   connectionLabel: '{{bundle.authData.email}}',
   fields: [
-    {
-      key: 'api_key',
-      label: "API key",
-      type: 'string',
-      required: true,
-      helpText: 'Found on your [settings page](https://elasticemail.com/account/#/settings/apiconfiguration).'
-    },
     {
       key: 'email',
       label: 'Email',
       type: 'string',
       required: true,
-      helpText: 'Elastic Email login'
+    },
+    {
+      key: 'password',
+      label: 'Password',
+      type: 'password',
+      required: true
+    },
+    {
+      key: 'secretKey',
+      type: 'string',
+      required: false,
+      computed: true
     }
-  ]
+  ],
+  sessionConfig: {
+    perform: getSessionKey
+  }
 };
+
+
 
 module.exports = authentication;

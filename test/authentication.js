@@ -11,19 +11,20 @@ describe('basic authentication', () => {
   
   zapier.tools.env.inject();
 
-  it('should authenticate', (done) => {
+  it('has an exchange for username/password', (done) => {
+    // Try changing the values of username or password to see how the test method behaves
     const bundle = {
       authData: {
-        api_key: process.env.API_KEY,
-        email: "johndoe@foobar.com"
+        email: "email",
+        password: "password"
       }
     };
 
-    appTester(App.authentication.test, bundle)
-      .then((response) => {
+    appTester(App.authentication.sessionConfig.perform, bundle)
+      .then((newAuthData) => {
+        newAuthData.sessionKey.should.eql(process.env.API_KEY);
         done();
       })
       .catch(done);
   });
-
 });

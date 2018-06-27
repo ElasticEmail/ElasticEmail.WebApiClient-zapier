@@ -7,12 +7,13 @@ const sample = require("../samples/sample_email");
 
 const sendEmail = (z, bundle) => {
     const options = {
-        apiKey: bundle.authData.api_key,
+        apiKey: bundle.authData.secretKey,
         apiUri: "https://api.elasticemail.com/",
         apiVersion: "v2"
     };
 
     const EE = new eeClient(options);
+    console.log(EE, options);
     
     let params = {
         "subject": bundle.inputData.subject,
@@ -61,13 +62,17 @@ const sendEmail = (z, bundle) => {
     return EE.Email.Send(params);
 }
 
+const t = (text) => {
+    return _.startCase(_.toLower(text));
+}
+
 module.exports = {
     key: "email",
     noun: "Email",
   
     display: {
-      label: "Send an Email",
-      description: "Submit emails. The default, maximum (accepted by us) size of an email is 10 MB in total, with or without attachments included.",
+      label: t("Send Email"),
+      description: "Sends an email. The default, maximum (accepted by us) size of an email is 10 MB in total, with or without attachments included.",
       important: true
     },
   
@@ -75,71 +80,74 @@ module.exports = {
       inputFields: [
         {
             key: "subject",
-            label:"Subject",
+            label: t("Subject"),
             required: true,
         },
         {
             key: "from",
-            label: "From",
+            label: t("From"),
             required: true,
-            helpText: "From email address. Please note this email should be verfied in Elastic Email system. You can verify it on [settings](https://elasticemail.com/account/#/settings/domains]) page."
+            helpText: "From email address. Please note this email should be verfied in Elastic Email system. You can verify it on [settings](https://elasticemail.com/account/#/settings/domains) page."
         },
         {
             key: "fromName",
-            label: "From name",
+            label: t("From name"),
             required: false,
             helpText: "Display name for from email address"
         },
         {
             key: "replyTo",
-            label: "Reply to",
+            label: t("Reply to"),
             required: false,
             helpText: "Email address to reply to"
         },
         {
             key: "replyToName",
-            label: "Reply to name",
+            label: t("Reply to name"),
             required: false,
             helpText: "Display name of the reply to address"
         },
         {
+            type: "string",
+            list: true,
             key: "to",
-            label: "To",
+            label: t("To"),
             required: true,
             helpText: "List of email recipients."
         },
         {
+            type: "string",
             list: true,
             key: "msgCC",
-            label: "CC",
+            label: t("CC"),
             required: false,
             helpText: "List of email recipients (visible to all other recipients of the message as CC MIME header)."
         },
         {
+            type: "string",
             list: true,
             key: "msgBcc",
-            label: "Bcc",
+            label: t("Bcc"),
             required: false,
             helpText: "List of hidden email recipients."
         },
         {
             key: "bodyType",
             required: true,
-            label: "Body Type",
+            label: t("Body Type"),
             choices: ["Plain", "HTML"]
         },
         {
             key: "body",
-            label: "Body",
+            label: t("Body"),
             type: "text",
             required: true
         },
         {
             key: "attachmentFile",
-            label: "Attachment",
+            label: t("Attachment"),
             type: "file",
-            required: false,
-            helpText: "Attachment file"
+            required: false
         }
       ],
       perform: sendEmail,
