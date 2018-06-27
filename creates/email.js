@@ -13,7 +13,6 @@ const sendEmail = (z, bundle) => {
     };
 
     const EE = new eeClient(options);
-    console.log(EE, options);
     
     let params = {
         "subject": bundle.inputData.subject,
