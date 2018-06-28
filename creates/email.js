@@ -58,7 +58,10 @@ const sendEmail = (z, bundle) => {
         };
     }
 
-    return EE.Email.Send(params);
+    return EE.Email.Send(params)
+    .catch((err) => {
+        throw new Error(err);
+    });
 }
 
 const t = (text) => {

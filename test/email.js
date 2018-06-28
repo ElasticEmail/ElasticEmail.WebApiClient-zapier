@@ -8,9 +8,9 @@ const appTester = zapier.createAppTester(App);
 
 const testData = {
     subject: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    to: "joandoe@gmail.com",
-    from: "johndoe@gmail.com",
-    replyTo: "johndoe@gmail.com",
+    to: process.env.EMAIL,
+    from: process.env.EMAIL,
+    replyTo: process.env.EMAIL,
     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
     " Curabitur in lectus id ipsum laoreet dignissim in ut odio. Duis volutpat arcu dolor, eu cursus mi vestibulum ut." +
     " Etiam eu ipsum orci. Vestibulum aliquam eros in massa dapibus malesuada. Proin sit amet blandit nulla, eu porttitor neque." +
