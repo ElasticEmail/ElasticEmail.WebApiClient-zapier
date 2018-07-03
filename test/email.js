@@ -23,6 +23,7 @@ const testData = {
     fromName: "John Doe",
     bodyType: "Plain"
 
+
 };
 
 describe("email action", () => {
@@ -38,7 +39,8 @@ describe("email action", () => {
               replyTo: testData.replyTo,
               body: testData.body,
               fromName: testData.fromName,
-              bodyType: testData.bodyType
+              bodyType: testData.bodyType,
+              attachmentFile: process.env.FILE_URL
             }
           };
         appTester(App.creates.email.operation.perform, bundle)

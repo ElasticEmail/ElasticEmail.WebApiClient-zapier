@@ -1,6 +1,6 @@
-const fs = require("fs");
 const path = require("path");
 const _ = require("lodash");
+const request = require("request");
 
 const eeClient = require("elasticemail-webapiclient").client;
 const sample = require("../samples/sample_email");
@@ -53,7 +53,7 @@ const sendEmail = (z, bundle) => {
 
     if (bundle.inputData.attachmentFile) {
         params.attachmentFiles = { 
-            value: fs.createReadStream(bundle.inputData.attachmentFile),
+            value: request(bundle.inputData.attachmentFile),
             options: { filename: path.basename(bundle.inputData.attachmentFile), contentType: null }
         };
     }
