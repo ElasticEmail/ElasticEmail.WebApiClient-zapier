@@ -53,17 +53,13 @@ const sendEmail = (z, bundle) => {
     }
 
     if (bundle.inputData.attachmentFile && !_.isArray(bundle.inputData.attachmentFile)) {
-        const extName = (path.extname(file)) ? path.extname(file) : null;
-
-        params.attachmentFiles = { 
-            value: request(bundle.inputData.attachmentFile),
-            options: { filename: "attachment" + extName, contentType: null }
-        };
+        params.attachmentFiles = fileObject(bundle.inputData.attachmentFile);
     } else if (bundle.inputData.attachmentFile && _.isArray(bundle.inputData.attachmentFile)) {
         params.attachmentFiles = [];
         
         _.forEach(bundle.inputData.attachmentFile, (file, key) => {
-            const extName = (path.extname(file)) ? path.extname(file) : null;
+            if (!file) { return; }
+            const extName = (path.extname(file)) ? path.extname(file) : "";
             
             params.attachmentFiles.push({
                 value: request(file),
@@ -76,6 +72,16 @@ const sendEmail = (z, bundle) => {
     .catch((err) => {
         throw new Error(err);
     });
+}
+
+const fileObject = (file, key) => {
+    const extName = (path.extname(file)) ? path.extname(file) : "";
+    const fileId = (key) ? key : "";
+
+    return { 
+        value: request(file),
+        options: { filename: "attachment" + fileId + extName, contentType: null }
+    };
 }
 
 const t = (text) => {

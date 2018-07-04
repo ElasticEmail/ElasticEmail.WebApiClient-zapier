@@ -1,6 +1,6 @@
 {
   "name": "elasticemail-zapier",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "An ElasticEmail app for the Zapier platform.",
   "repository": "ElasticEmail/ElasticEmail.WebApiClient-zapier",
   "homepage": "https://elasticemail.com/",
