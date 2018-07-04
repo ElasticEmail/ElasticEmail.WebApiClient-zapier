@@ -52,11 +52,24 @@ const sendEmail = (z, bundle) => {
         params.bodyText = bundle.inputData.body;
     }
 
-    if (bundle.inputData.attachmentFile) {
+    if (bundle.inputData.attachmentFile && !_.isArray(bundle.inputData.attachmentFile)) {
+        const extName = (path.extname(file)) ? path.extname(file) : null;
+
         params.attachmentFiles = { 
             value: request(bundle.inputData.attachmentFile),
-            options: { filename: "attachment" + path.extname(bundle.inputData.attachmentFile), contentType: null }
+            options: { filename: "attachment" + extName, contentType: null }
         };
+    } else if (bundle.inputData.attachmentFile && _.isArray(bundle.inputData.attachmentFile)) {
+        params.attachmentFiles = [];
+        
+        _.forEach(bundle.inputData.attachmentFile, (file, key) => {
+            const extName = (path.extname(file)) ? path.extname(file) : null;
+            
+            params.attachmentFiles.push({
+                value: request(file),
+                options: { filename: "attachment" + key + extName, contentType: null }
+            });
+        });
     }
 
     return EE.Email.Send(params)
