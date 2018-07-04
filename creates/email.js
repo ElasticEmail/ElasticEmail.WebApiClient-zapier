@@ -59,12 +59,8 @@ const sendEmail = (z, bundle) => {
         
         _.forEach(bundle.inputData.attachmentFile, (file, key) => {
             if (!file) { return; }
-            const extName = (path.extname(file)) ? path.extname(file) : "";
             
-            params.attachmentFiles.push({
-                value: request(file),
-                options: { filename: "attachment" + key + extName, contentType: null }
-            });
+            params.attachmentFiles.push(fileObject(file, key));
         });
     }
 
