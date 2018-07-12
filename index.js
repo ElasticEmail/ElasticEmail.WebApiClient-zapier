@@ -1,5 +1,6 @@
 const authentication = require('./authentication');
 const sendEmail = require('./creates/email');
+const addContact = require('./creates/contact');
 
 const handleHTTPError = (response, z) => {
   if (response.status >= 400) {
@@ -38,6 +39,7 @@ const App = {
   // If you want your creates to show up, you better include it here!
   creates: {
     [sendEmail.key]: sendEmail,
+    [addContact.key]: addContact
   }
 };
 

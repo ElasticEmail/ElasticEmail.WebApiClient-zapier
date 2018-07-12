@@ -2,6 +2,7 @@ const path = require("path");
 const _ = require("lodash");
 const request = require("request");
 const sanitize = require("sanitize-filename");
+const t = require("../utils/TitleCase");
 
 const eeClient = require("elasticemail-webapiclient").client;
 const sample = require("../samples/sample_email");
@@ -78,10 +79,6 @@ const fileObject = (file, key) => {
         value: request(file),
         options: { filename: "attachment" + fileId + extName, contentType: null }
     };
-}
-
-const t = (text) => {
-    return _.startCase(_.toLower(text));
 }
 
 module.exports = {
