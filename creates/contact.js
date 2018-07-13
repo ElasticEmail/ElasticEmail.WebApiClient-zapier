@@ -95,7 +95,7 @@ module.exports = {
                 key: "activationReturnUrl",
                 label: t("Activation Return Url"),
                 required: false,
-                helpText: "The url to return the contact to after activation."
+                helpText: "The url to return the contact after activation."
             },
         ],
         perform: addContact,
