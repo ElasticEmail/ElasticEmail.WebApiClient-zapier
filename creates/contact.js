@@ -89,7 +89,7 @@ module.exports = {
                 label: t("Send Activation"),
                 type: "boolean",
                 required: false,
-                helpText: "True, if you want to send activation email to this account. Otherwise, false"
+                helpText: "True, if you want to send activation email to this account."
             },
             {
                 key: "activationReturnUrl",
