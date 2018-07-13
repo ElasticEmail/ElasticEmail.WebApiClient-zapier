@@ -64,7 +64,7 @@ module.exports = {
                 key: "listName",
                 label: t("List Name"),
                 required: false,
-                helpText: "Name of your existing [list](https://elasticemail.com/account/#/contacts/staticlists), you can create new list in [dashboard](https://elasticemail.com/account/#/contacts/staticlists) by selecting Edit Contacts -> Create List. If name will be not specfied, contact will be added to 'All' list. "
+                helpText: "Name of your existing [list](https://elasticemail.com/account/#/contacts/staticlists). You can create new list in [dashboard](https://elasticemail.com/account/#/contacts/staticlists) by selecting Edit Contacts -> Create List. If name will be not specfied, contact will be added to 'All' list. "
             },
             {
                 key: "firstName",
