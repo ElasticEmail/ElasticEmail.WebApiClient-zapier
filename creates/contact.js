@@ -64,7 +64,7 @@ module.exports = {
                 key: "listName",
                 label: t("List Name"),
                 required: false,
-                helpText: "Name of your list."
+                helpText: "Name of your existing [list](https://elasticemail.com/account/#/contacts/staticlists), you can create new list in [dashboard](https://elasticemail.com/account/#/contacts/staticlists) by selecting Edit Contacts -> Create List. If name will be not specfied, contact will be added to 'All' list. "
             },
             {
                 key: "firstName",
@@ -82,7 +82,7 @@ module.exports = {
                 type: "string",
                 dict: true,
                 required: false,
-                helpText: "Custom contact fields like firstname, lastname, city etc."
+                helpText: "Custom contact fields like firstname, lastname, city etc. Make sure you added them in [dashboard](https://elasticemail.com/account/#/contacts/managefields) before."
             },
             {
                 key: "sendActivation",
